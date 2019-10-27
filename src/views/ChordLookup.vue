@@ -146,6 +146,7 @@
 import ChordPlayer from "@/mixins/ChordPlayer.js";
 import MusicText from "@/mixins/MusicText";
 import ChordFingeringFull from "@/components/ChordFingeringFull";
+const randomstring = require("randomstring");
 
 export default {
   mixins: [ChordPlayer, MusicText],
@@ -186,6 +187,10 @@ export default {
     getRouterLink(symbol) {
       const url = "/lookup/";
       return url + encodeURIComponent(symbol);
+    },
+    randStr(len) {
+      const strlen = len || 16;
+      return randomstring.generate(strlen);
     }
   },
   created() {
