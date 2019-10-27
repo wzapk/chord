@@ -143,6 +143,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import ChordPlayer from "@/mixins/ChordPlayer.js";
 import MusicText from "@/mixins/MusicText";
 import ChordFingeringFull from "@/components/ChordFingeringFull";
@@ -158,6 +159,10 @@ export default {
     ChordFingeringFull
   },
   computed: {
+    ...mapGetters({
+      token: 'auth/token',
+      ticket: 'auth/ticket'
+    }),
     intervals() {
       const optInt = this.chord.optionalIntervals;
       return this.chord.intervals.map(interval => ({
@@ -170,6 +175,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      fetchToken: 'auth/fetchToken',
+      fetchTicket: 'auth/fetchTicket'
+    }),
     navigate() {
       const search = this.$route.params.chordSearch;
       if (search) {
@@ -194,6 +203,9 @@ export default {
   watch: {
     $route() {
       this.navigate();
+    },
+    token() {
+      this.fetchTicket();
     }
   },
   mounted() {}

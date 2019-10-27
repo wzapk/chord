@@ -6,7 +6,7 @@
         <span class="font-weight-light">{{ siteInfo.appName }}</span>
       </v-toolbar-title>
       <v-toolbar-items>
-        <v-btn text @click="navigate({ name: 'home' })">首页1</v-btn>
+        <v-btn text @click="navigate({ name: 'home' })">首页-dev</v-btn>
         <v-btn text @click="navigate({ name: 'chord-lookup' })"
           >和弦指法查询</v-btn
         >
@@ -42,9 +42,11 @@ import { settings } from "./config";
 
 export default {
   name: "App",
-  data: () => ({
-    siteInfo: {}
-  }),
+  data() {
+    return {
+      siteInfo: {}
+    }
+  },
   methods: {
     navigate(name) {
       this.$router.push(name);
