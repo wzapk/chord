@@ -47,6 +47,7 @@
             本页固定链接(permalink)：<span class="blue--text">{{
               permalink
             }}</span>
+            <v-btn small text icon @click="share"><v-icon>mdi-share</v-icon></v-btn>
           </div>
           <div class="float-right">
             点击和弦图，会发生什么事情？
@@ -147,12 +148,17 @@ import { mapGetters, mapActions } from 'vuex';
 import ChordPlayer from "@/mixins/ChordPlayer.js";
 import MusicText from "@/mixins/MusicText";
 import ChordFingeringFull from "@/components/ChordFingeringFull";
+import { randStr } from '../helper/index';
+import { settings } from '../config/app';
+// import { auth } from '../config/auth';
+const sha1 = require('sha1');
 
 export default {
   mixins: [ChordPlayer, MusicText],
   data() {
     return {
-      examples: ["C", "Em", "D7", "Cm7/A", "Fmaj7sus2"]
+      examples: ["C", "Em", "D7", "Cm7/A", "Fmaj7sus2"],
+      signature: '',
     };
   },
   components: {
@@ -195,10 +201,52 @@ export default {
     getRouterLink(symbol) {
       const url = "/lookup/";
       return url + encodeURIComponent(symbol);
+    },
+    genSignature(url) {
+      const params = {
+        noncestr: randStr(),
+        timestamp: Number(new Date()),
+        jsapi_ticket: this.ticket,
+        url: url
+      };
+      const ordered = [];
+      Object.keys(params).sort().forEach(function(key) {
+        ordered.push(key + '=' + params[key]);
+      });
+      let paramStr = ordered.join('&');
+      const signature = sha1(paramStr);
+      paramStr += `&signature=${signature}`;
+      // console.log(paramStr);
+      window.wx.config({
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: params.jsapi_ticket, // 必填，公众号的唯一标识
+        timestamp: params.timestamp, // 必填，生成签名的时间戳
+        nonceStr: params.noncestr, // 必填，生成签名的随机串
+        signature: signature,// 必填，签名
+        jsApiList: ['updateAppMessageShareData','updateTimelineShareData'] // 必填，需要使用的JS接口列表
+      });
+    },
+    share() {
+      var symbol = this.chord.symbol;
+      var permalink = this.permalink;
+      window.wx.ready(function() {
+        // console.log(symbol, settings.appTitle);
+        window.wx.updateAppMessageShareData({ 
+          title: settings.appTitle + ' - ' + symbol + ' 和弦指法', // 分享标题
+          desc: symbol+ ' 和弦指法图', // 分享描述
+          link: permalink, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+          imgUrl: '../assets/logo.gif', // 分享图标
+          success: function () {
+            // 设置成功
+            console.log('分享成功');
+          }
+        })
+      })
     }
   },
   created() {
     this.navigate();
+    this.fetchToken();
   },
   watch: {
     $route() {
@@ -206,8 +254,15 @@ export default {
     },
     token() {
       this.fetchTicket();
+    },
+    chord(val) {
+      if (val) {
+        this.genSignature(this.permalink);
+      }
     }
   },
-  mounted() {}
+  mounted() {
+    
+  }
 };
 </script>

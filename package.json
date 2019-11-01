@@ -14,6 +14,8 @@
     "chord-fingering": "^1.0.1",
     "core-js": "^3.3.2",
     "cors": "^2.8.5",
+    "randomstring": "^1.1.5",
+    "sha1": "^1.1.1",
     "soundfont-player": "^0.11.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3",

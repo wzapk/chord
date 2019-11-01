@@ -38,7 +38,7 @@
 
 <script>
 const version = require("../package.json").version;
-import { settings } from "./config";
+import { settings } from "./config/app";
 
 export default {
   name: "App",
