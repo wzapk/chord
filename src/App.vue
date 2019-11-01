@@ -3,12 +3,11 @@
     <v-app-bar app dark color="purple">
       <v-toolbar-title class="mr-2 headline text-uppercase">
         <span class="mr-2">{{ siteInfo.appTitle }}</span>
-        <span class="font-weight-light">{{ siteInfo.appName }}</span>
       </v-toolbar-title>
       <v-toolbar-items>
-        <v-btn text @click="navigate({ name: 'home' })">首页1</v-btn>
+        <v-btn text @click="navigate({ name: 'home' })">首页</v-btn>
         <v-btn text @click="navigate({ name: 'chord-lookup' })"
-          >和弦指法查询</v-btn
+          >指法查询</v-btn
         >
       </v-toolbar-items>
     </v-app-bar>
@@ -38,7 +37,7 @@
 
 <script>
 const version = require("../package.json").version;
-import { settings } from "./config";
+import { settings } from "./config/app";
 
 export default {
   name: "App",
