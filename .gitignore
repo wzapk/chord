@@ -19,3 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+config.js
+MP_verify_D4IdpctvFVLXUGrZ.txt
+config/auth.js

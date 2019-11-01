@@ -3,7 +3,7 @@
     <v-layout text-center wrap>
       <v-flex xs12>
         <v-img
-          :src="require('../assets/logo.gif')"
+          :src="require('../assets/guitarchina.logo.png')"
           class="my-3"
           contain
           height="150"
@@ -12,7 +12,7 @@
 
       <v-flex my-4 class="grey--text darken-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          欢迎使用和弦图表库
+          欢迎使用{{appname}}
         </h1>
         <p class="subheading font-weight-regular">
           在这里您可以查询吉他和弦指法图，
@@ -36,9 +36,14 @@
 </template>
 
 <script>
+import {settings} from '../config/app';
+
 export default {
   data: () => ({
-    //
-  })
+    appname: '',
+  }),
+  mounted() {
+    this.appname = settings.appName;
+  }
 };
 </script>
