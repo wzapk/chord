@@ -20,6 +20,6 @@ yarn-error.log*
 *.sln
 *.sw?
 
-config.js
+src/config.js
 MP_verify_D4IdpctvFVLXUGrZ.txt
-config/auth.js
+src/config/auth.js
