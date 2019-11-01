@@ -40,6 +40,11 @@
         </v-row>
       </v-card-text>
     </v-card>
+    <v-row v-if="playerLoading">
+      <v-col>
+        <p>正在加载乐器...</p>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <div v-if="chord">

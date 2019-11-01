@@ -50,6 +50,7 @@ export default {
       ],
       soundfontPlayer: null,
       autoPlay: false,
+      playerLoading: true,
 
       // avoid lag when navigating or typing chord symbols
       chordFingeringsTimeout: null,
@@ -160,13 +161,15 @@ export default {
     loadInstrument() {
       const { name } = this.instrument;
       const AudioContext = window.AudioContext || window.webkitAudioContext;
-      
+
       if (!this.audioContext) this.audioContext = new AudioContext();
       // const soundUrl = 'http://gleitz.github.io/midi-js-soundfonts/FatBoy/';
       const from = "http://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/";
       //soundfont: 'FluidR3_GM'
+      this.playerLoading = true;
       Soundfont.instrument(this.audioContext, name, { from }).then(player => {
         this.soundfontPlayer = player;
+        this.playerLoading = false;
       });
     },
 
