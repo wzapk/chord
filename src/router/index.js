@@ -18,6 +18,12 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "lookup" */ "../views/ChordLookup.vue")
+  },
+  {
+    path: '/metronome',
+    name: 'metronome',
+    component: () =>
+      import(/* webpackChunkName: "metronome" */ "../views/Metronome.vue")
   }
 ];
 

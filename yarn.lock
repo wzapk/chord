@@ -8265,6 +8265,11 @@ wcwidth@^1.0.1:
   dependencies:
     defaults "^1.0.3"
 
+web-audio-scheduler@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.npm.taobao.org/web-audio-scheduler/download/web-audio-scheduler-1.4.0.tgz#f4b027ba8a8ca64a072ed3ac27d18168a08dee5a"
+  integrity sha1-9LAnuoqMpkoHLtOsJ9GBaKCN7lo=
+
 webpack-bundle-analyzer@^3.6.0:
   version "3.6.0"
   resolved "https://registry.npm.taobao.org/webpack-bundle-analyzer/download/webpack-bundle-analyzer-3.6.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fwebpack-bundle-analyzer%2Fdownload%2Fwebpack-bundle-analyzer-3.6.0.tgz#39b3a8f829ca044682bc6f9e011c95deb554aefd"

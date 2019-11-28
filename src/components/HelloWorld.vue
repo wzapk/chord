@@ -11,9 +11,7 @@
       </v-flex>
 
       <v-flex my-4 class="grey--text darken-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          欢迎使用{{appname}}
-        </h1>
+        <h1 class="display-2 font-weight-bold mb-3">欢迎使用{{ appname }}</h1>
         <p class="subheading font-weight-regular">
           在这里您可以查询吉他和弦指法图，
           <br />还可以听一下该和弦的声音
@@ -36,11 +34,11 @@
 </template>
 
 <script>
-import {settings} from '../config/app';
+import { settings } from "../config/app";
 
 export default {
   data: () => ({
-    appname: '',
+    appname: ""
   }),
   mounted() {
     this.appname = settings.appName;

@@ -6,9 +6,8 @@
       </v-toolbar-title>
       <v-toolbar-items>
         <v-btn text @click="navigate({ name: 'home' })">首页</v-btn>
-        <v-btn text @click="navigate({ name: 'chord-lookup' })"
-          >指法查询</v-btn
-        >
+        <v-btn text @click="navigate({ name: 'chord-lookup' })">指法查询</v-btn>
+        <v-btn text @click="navigate({ name: 'metronome' })">节拍器</v-btn>
       </v-toolbar-items>
     </v-app-bar>
 
