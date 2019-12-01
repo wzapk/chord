@@ -163,7 +163,9 @@ export default {
       // const AudioContext = window.AudioContext || window.webkitAudioContext;
       const self = this;
 
-      if (!this.audioContext) this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      if (!this.audioContext)
+        this.audioContext = new (window.AudioContext ||
+          window.webkitAudioContext)();
       // const soundUrl = 'http://gleitz.github.io/midi-js-soundfonts/FatBoy/';
       const from = "http://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/";
       //soundfont: 'FluidR3_GM'

@@ -101,7 +101,7 @@ export default {
       // and may or may not have played yet. {note, time}
       timerWorker: null, // The Web Worker used to fire timer messages
       MAX_TEMPO: 240.0,
-      MIN_TEMPO: 40.0,
+      MIN_TEMPO: 40.0
     };
   },
   methods: {
@@ -254,7 +254,8 @@ export default {
       // TO WORK ON CURRENT CHROME!!  But this means our code can be properly
       // spec-compliant, and work on Chrome, Safari and Firefox.
 
-      this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      this.audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)();
 
       // if we wanted to load audio files, etc., this is where we should do it.
 
@@ -306,7 +307,7 @@ export default {
         this.status = "Start";
       }
     },
-    $route () {
+    $route() {
       this.timerWorker.postMessage("stop");
       this.isPlaying = false;
     }
