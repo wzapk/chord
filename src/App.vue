@@ -45,7 +45,7 @@ export default {
   }),
   methods: {
     navigate(name) {
-      this.$router.push(name);
+      this.$router.push(name).catch(() => {});
     }
   },
   created() {

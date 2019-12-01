@@ -3,7 +3,7 @@
     <v-card :elevation="4">
       <v-card-text>
         <v-row>
-          <v-col sm="12">
+          <v-col :sm="12">
             <v-text-field
               v-model="chordSearch"
               label="输入要查询的和弦名称"
@@ -11,7 +11,7 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col sm="12" md="2">
+          <v-col :sm="12" :md="2">
             <v-select
               v-model="instrument"
               :items="instruments"
@@ -21,7 +21,7 @@
               label="选择乐器"
             ></v-select>
           </v-col>
-          <v-col sm="12" md="2">
+          <v-col :sm="12" :md="2">
             <v-select
               v-model="tuning"
               :items="tunings"
@@ -31,7 +31,7 @@
               label="调弦类型"
             ></v-select>
           </v-col>
-          <v-col sm="12" md="2">
+          <v-col :sm="12" :md="2">
             <v-checkbox
               v-model="chordSearchCaseSensitive"
               label="区分大小写"
@@ -129,9 +129,9 @@
         </v-col>
 
         <v-col
-          sm="12"
-          md="4"
-          lg="2"
+          :sm="6"
+          :md="4"
+          :lg="2"
           v-for="(chordFingering, i) in chordFingerings"
           :key="i"
         >

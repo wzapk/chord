@@ -160,9 +160,10 @@ export default {
 
     loadInstrument() {
       const { name } = this.instrument;
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      // const AudioContext = window.AudioContext || window.webkitAudioContext;
+      const self = this;
 
-      if (!this.audioContext) this.audioContext = new AudioContext();
+      if (!this.audioContext) this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
       // const soundUrl = 'http://gleitz.github.io/midi-js-soundfonts/FatBoy/';
       const from = "http://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/";
       //soundfont: 'FluidR3_GM'
@@ -171,11 +172,29 @@ export default {
         this.soundfontPlayer = player;
         this.playerLoading = false;
       });
+      // 修正ios不能播放的bug
+      window.addEventListener(
+        "touchstart",
+        function() {
+          // create empty buffer
+          var buffer = self.audioContext.createBuffer(1, 1, 22050);
+          var source = self.audioContext.createBufferSource();
+          source.buffer = buffer;
+
+          // connect to output (your speakers)
+          source.connect(self.audioContext.destination);
+
+          // play the file
+          // source.noteOn(0);
+        },
+        false
+      );
     },
 
     playChord() {
       if (!this.soundfontPlayer || !this.chord) return;
-      this.soundfontPlayer.stop();
+      // this.soundfontPlayer.stop();
+      // this.audioContext.suspend();
       this.audioContext.resume().then(() => {
         const notes = this.selectedFingering.positions
           .map(p => p.note)

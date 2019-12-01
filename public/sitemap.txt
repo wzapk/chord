@@ -1,2 +1,3 @@
 http://www.yiiboard.com
 http://www.yiiboard.com/lookup
+http://www.yiiboard.com/metronome
